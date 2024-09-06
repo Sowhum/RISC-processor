@@ -20,12 +20,13 @@ A simple 16-bit pipelined RISC Processor designed in Verilog following Harvard a
 
 ## Instructions 
 The instructions are decoded as follows <br>
-|--------------------------|-----------------|------------------|------------------|-----------------|---------------------|----------------------|
-| Memory Access: Load       | Op 4 bits             | Rs1 3 bits              | Ws 3 bits               | Offset 6 bits                           |
-| Memory Access: Store      | Op 4 bits             | Rs1 3 bits              | Rs2 3 bits              | Offset 6 bits                           |
-| Data Processing           | Op 4 bits             | Rs1 3 bits              | Rs2 3 bits              | Ws 3 bits             | Useless 3 bi    |
-| Branch                    | Op 4 bits             | Rs1 3 bits              | Rs2 3 bits              | Offset 6bits                            |
-| Jump                      | Op 4 bits             |  offset 12 bits                                                                             |
+| Instruction Type          | Fields                                                                                             |
+|---------------------------|----------------------------------------------------------------------------------------------------|
+| Memory Access: Load        | Op (4 bits) &#124; Rs1 (3 bits) &#124; Ws (3 bits) &#124; Offset (6 bits)                          |
+| Memory Access: Store       | Op (4 bits) &#124; Rs1 (3 bits) &#124; Rs2 (3 bits) &#124; Offset (6 bits)                         |
+| Data Processing            | Op (4 bits) &#124; Rs1 (3 bits) &#124; Rs2 (3 bits) &#124; Ws (3 bits) &#124; Useless (3 bits)     |
+| Branch                     | Op (4 bits) &#124; Rs1 (3 bits) &#124; Rs2 (3 bits) &#124; Offset (6 bits)                         |
+| Jump                       | Op (4 bits) &#124; Offset (12 bits)                                                                |
 
 
 ## Simulations
