@@ -36,4 +36,19 @@ You can observe the instruction_IF_ID flushing after JMP where it is assigned to
 Here the path of data can be traced (highlighted in yellow) in an ADD instruction, both reg data adds to get 0+1=1<br>
 This is then written to addr 2 of the register which can be seen highlighted in blue
 
-Note the instruction right next to it involves taking value at addr2, here data forwarding is done to the ALU so when it ALU_out is calculated it yields 6 (5+1) instead of 7 (5+2)
+**Note:** the instruction right next to it involves taking value at addr2, here data forwarding is done to the ALU so when it **ALU_out** is calculated it yields 6 (5+1) instead of 7 (5+2) 
+<br>
+- **Branch and stalling**
+  ![image](https://github.com/user-attachments/assets/e33227aa-ffdd-48bf-b93a-2dba8429bb7f)
+In this case instruction 6 is skipped and 8 is used
+
+Here stalling of **pc_current** and **pc_next** can be seen at value **4** <br>
+This is trigerred by the **stall signal** , and resumes function when **branch_resolved** pulses <br>
+The value of **PC_2beq** (8) is stored in **pc_next** when **beq_control** goes high
+**Note: ** The value for branch_resolved is also given to control unit via ID in order to not make **beq** go up again (as instruction is still in pipeline)
+<br>
+- **Jump and stalling**
+![image](https://github.com/user-attachments/assets/6c13ab6a-d098-4cc5-97b9-55ab9462684e)
+<br>
+Incorrect instruction is flsuh from the pipeline after JUMP(d001) and is replaced with 16'b0 <br>
+This is based on the **jump** and **flush** signals, the correct instruction can been seen moving through pipeline later as 2558
