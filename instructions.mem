@@ -1,0 +1,5 @@
+0010000001010000 // Add R2 <- R0 + R1
+0010010101011000 // sub R3 <- R0 - R1
+1011011110000001 // BEQ branch to jump if R3=R6, PCnew= PC+2+offset<<1 => offset is 1, skips next instruction
+0010000001010000 // repeat
+1101000000000001 // J jump to the beginning address
