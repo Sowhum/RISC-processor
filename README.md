@@ -20,12 +20,20 @@ A simple 16-bit pipelined RISC Processor designed in Verilog following Harvard a
 
 ## Simulations
 The instruction file is running this set of instructions <br>
-0010000001010000 // Add R2 <- R0 + R1 (2050 in HEX) <br>
-0010010101011000 // sub R3 <- R0 - R1 (2558 in HEX) <br>
-1011011110000001 // BEQ branch to jump if R3=R6 (b781 in HEX), PCnew= PC+2+offset<<1 => offset is 1, skips next instruction <br>
-0010000001010000 // gets skipped <br>
-1101000000000001 // J jump to the second address (d001 in HEX) <br>
+**0010000001010000** // Add R2 <- R0 + R1 (2050 in HEX) <br>
+**0010010101011000** // Add R3 <- R5 + R2 (2558 in HEX) <br>
+**1011011110000001** // BEQ branch to jump if R3=R6 (b781 in HEX), PCnew= PC+2+offset<<1 => offset is 1, skips next instruction <br>
+**0010000001010000** // gets skipped <br>
+**1101000000000001** // J jump to the second address (d001 in HEX) <br>
 
 You can observe the instruction_IF_ID flushing after JMP where it is assigned to 16'b0 as well as the stall taking place till branch is resolved after BEQ
 
-![image](https://github.com/user-attachments/assets/f605ae3c-e3dd-49db-9fd9-e3bcd6150a03)
+![image](https://github.com/user-attachments/assets/f605ae3c-e3dd-49db-9fd9-e3bcd6150a03) <br>
+
+- **Data Processing ADD with Forwarding**
+![image](https://github.com/user-attachments/assets/247de4fc-879c-46a4-91e1-164fbcfdebe0)
+<br>
+Here the path of data can be traced (highlighted in yellow) in an ADD instruction, both reg data adds to get 0+1=1<br>
+This is then written to addr 2 of the register which can be seen highlighted in blue
+
+Note the instruction right next to it involves taking value at addr2, here data forwarding is done to the ALU so when it ALU_out is calculated it yields 6 (5+1) instead of 7 (5+2)
