@@ -44,7 +44,7 @@ In this case instruction 6 is skipped and 8 is used
 
 Here stalling of **pc_current** and **pc_next** can be seen at value **4** <br>
 This is trigerred by the **stall signal** , and resumes function when **branch_resolved** pulses <br>
-The value of **PC_2beq** (8) is stored in **pc_next** when **beq_control** goes high
+The value of **PC_2beq** (8) is stored in **pc_next** when **beq_control** goes high <br>
 **Note: ** The value for branch_resolved is also given to control unit via ID in order to not make **beq** go up again (as instruction is still in pipeline)
 <br>
 - **Jump and stalling**
