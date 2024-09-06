@@ -34,6 +34,32 @@ The instructions are decoded as follows <br>
 | Data Processing            | Op (4 bits) &#124; Rs1 (3 bits) &#124; Rs2 (3 bits) &#124; Ws (3 bits) &#124; Useless (3 bits)     |
 | Branch                     | Op (4 bits) &#124; Rs1 (3 bits) &#124; Rs2 (3 bits) &#124; Offset (6 bits)                         |
 | Jump                       | Op (4 bits) &#124; Offset (12 bits)                                                                |
+<table>
+  <tr>
+    <th>Instruction Type</th>
+    <th>Fields</th>
+  </tr>
+  <tr>
+    <td>Memory Access: Load</td>
+    <td>Op (4 bits) | Rs1 (3 bits) | Ws (3 bits) | Offset (6 bits)</td>
+  </tr>
+  <tr>
+    <td>Memory Access: Store</td>
+    <td>Op (4 bits) | Rs1 (3 bits) | Rs2 (3 bits) | Offset (6 bits)</td>
+  </tr>
+  <tr>
+    <td>Data Processing</td>
+    <td>Op (4 bits) | Rs1 (3 bits) | Rs2 (3 bits) | Ws (3 bits) | Useless (3 bits)</td>
+  </tr>
+  <tr>
+    <td>Branch</td>
+    <td>Op (4 bits) | Rs1 (3 bits) | Rs2 (3 bits) | Offset (6 bits)</td>
+  </tr>
+  <tr>
+    <td>Jump</td>
+    <td colspan="4">Op (4 bits) | Offset (12 bits)</td>
+  </tr>
+</table>
 
 
 ## Simulations
