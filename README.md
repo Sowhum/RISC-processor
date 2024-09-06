@@ -18,6 +18,17 @@ A simple 16-bit pipelined RISC Processor designed in Verilog following Harvard a
 - **Jump and Flush Logic**: Handling hazards for jump instruction by flushing unwanted instructions
 - **Verification**: Verified through simulation in Vivado with various instructions in memory files.
 
+## Instructions 
+The instructions are decoded as follows <br>
+| **Instruction Type**     | **Op (4 bits)** | **Rs1 (3 bits)** | **Rs2 (3 bits)** | **Ws (3 bits)** | **Offset (6 bits)** | **Useless (3 bits)** |
+|--------------------------|-----------------|------------------|------------------|-----------------|---------------------|----------------------|
+| Memory Access: Load       | Op              | Rs1              | Ws               |                 | Offset              |                      |
+| Memory Access: Store      | Op              | Rs1              | Rs2              |                 | Offset              |                      |
+| Data Processing           | Op              | Rs1              |                  | Ws              |                     | Useless              |
+| Branch                    | Op              | Rs1              | Rs2              |                 | Offset              |                      |
+| Jump                      | Op              |                  |                  |                 | Offset              |                      |
+
+
 ## Simulations
 The instruction file is running this set of instructions <br>
 **0010000001010000** // Add R2 <- R0 + R1 (2050 in HEX) <br>
