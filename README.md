@@ -28,6 +28,50 @@ The instructions are decoded as follows <br>
 | Branch                     | Op (4 bits) &#124; Rs1 (3 bits) &#124; Rs2 (3 bits) &#124; Offset (6 bits)                         |
 | Jump                       | Op (4 bits) &#124; Offset (12 bits)                                                                |
 
+| OP Code | Instruction               |
+|---------|---------------------------|
+| 0000    | Load Word                 |
+| 0001    | Store Word                |
+| 0002    | Add                       |
+| 0003    | Subtract                  |
+| 0004    | Invert (1's complement)   |
+| 0005    | Logical Shift Left        |
+| 0006    | Logical Shift Right       |
+| 0007    | Bitwise AND               |
+| 0008    | Bitwise OR                |
+| 0009    | Set on Less Than          |
+| 0011    | Branch on Equal           |
+| 0012    | Branch on Not Equal       |
+| 0013    | Jump                      |
+
+### A. Memory Access Instructions
+
+| Instruction  | Format                            | Operation                                   |
+|--------------|-----------------------------------|---------------------------------------------|
+| Load Word    | `LD ws, offset(rs1)`              | `ws := Mem16[rs1 + offset]`                 |
+| Store Word   | `ST rs2, offset(rs1)`             | `Mem16[rs1 + offset] := rs2`                |
+
+### B. Data Processing Instructions
+
+| Instruction           | Format                            | Operation                                   |
+|-----------------------|-----------------------------------|---------------------------------------------|
+| Add                   | `ADD ws, rs1, rs2`                | `ws := rs1 + rs2`                           |
+| Subtract              | `SUB ws, rs1, rs2`                | `ws := rs1 – rs2`                           |
+| Invert (1's complement)| `INV ws, rs1`                     | `ws := !rs1`                                |
+| Logical Shift Left     | `LSL ws, rs1, rs2`                | `ws := rs1 << rs2`                          |
+| Logical Shift Right    | `LSR ws, rs1, rs2`                | `ws := rs1 >> rs2`                          |
+| Bitwise AND           | `AND ws, rs1, rs2`                | `ws := rs1 & rs2`                           |
+| Bitwise OR            | `OR ws, rs1, rs2`                 | `ws := rs1 | rs2`                           |
+| Set on Less Than      | `SLT ws, rs1, rs2`                | `ws := 1 if rs1 < rs2, else ws := 0`        |
+
+### C. Control Flow Instructions
+
+| Instruction           | Format                            | Operation                                   |
+|-----------------------|-----------------------------------|---------------------------------------------|
+| Branch on Equal       | `BEQ rs1, rs2, offset`            | Branch to `(PC + 2 + (offset << 1))` when `rs1 == rs2` |
+| Branch on Not Equal   | `BNE rs1, rs2, offset`            | Branch to `(PC + 2 + (offset << 1))` when `rs1 != rs2` |
+| Jump                  | `JMP offset`                      | Jump to `{PC[15:13], (offset << 1)}`        |
+
 
 ## Simulations
 The instruction file is running this set of instructions <br>
